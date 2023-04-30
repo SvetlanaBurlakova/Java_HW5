@@ -57,7 +57,7 @@ public class HomeWork5 {
 количеством повторений. Отсортировать по убыванию популярности. */
     private static void RepeatNames() {
         ArrayList <String> list = new ArrayList<String>();
-        HashMap<String, Integer> employees = new HashMap<String, Integer>();
+        HashMap<String, Integer> employees = new HashMap<String, Integer>(); //Создаю справочник сотрудников, буду работать с текущим заданным справочником
         list.add("Иван Иванов");
         list.add("Светлана Петрова");
         list.add("Кристина Белова");
@@ -76,14 +76,14 @@ public class HomeWork5 {
         list.add("Иван Мечников");
         list.add("Петр Петин");
         list.add("Иван Ежов");
-        for (int i = 0; i < list.size(); i++) {
-            String [] entry = list.get(i).split(" ");
-            if (!employees.containsKey(entry[0])) employees.put(entry[0], 1);
+        for (int i = 0; i < list.size(); i++) { // прохожусь по элементам листа
+            String [] entry = list.get(i).split(" "); // создаю строковый массив по пробелу
+            if (!employees.containsKey(entry[0])) employees.put(entry[0], 1); // проверяю, если ли в справочнике это имя, если нет, кладу в справочник и указываю кол-во тиках имен =1
             else {
-                employees.put(entry[0], employees.get(entry[0])+1);
+                employees.put(entry[0], employees.get(entry[0])+1); // если такое имя есть, увеличиваю кол-во на 1
             } 
         }
-        List list1 = employees.entrySet()
+        List list1 = employees.entrySet() // создаю новый список, куда складываю из справочника только те имена, который встречаютя более 1 раза т сортирую их
             .stream()
             .filter(a -> a.getValue() > 1)
             .sorted((a, b) -> b.getValue().compareTo(a.getValue()))
